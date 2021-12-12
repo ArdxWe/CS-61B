@@ -75,14 +75,46 @@ public class IntList {
     /** DO NOT MODIFY ANYTHING ABOVE THIS LINE! */
 
 
+    private static IntList end(IntList A) {
+        if (A == null) {
+            return null;
+        }
+
+        IntList temp = A;
+        while (temp.rest != null) {
+            temp = temp.rest;
+        }
+
+        return temp;
+    }
+
+    private static IntList copyIntList(IntList A) {
+        if (A == null) {
+            return null;
+        }
+
+        IntList res = new IntList(A.first, A.rest);
+        IntList temp = res;
+
+        while (temp.rest != null) {
+            temp.rest = new IntList(temp.rest.first, temp.rest.rest);
+            temp = temp.rest;
+        }
+        return res;
+    }
     /**
      * Returns a list consisting of the elements of A followed by the
      * *  elements of B.  May modify items of A. Don't use 'new'.
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        IntList temp = end(A);
+        if (temp == null) {
+            return B;
+        }
+
+        temp.rest = B;
+        return A;
     }
 
     /**
@@ -90,8 +122,16 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        return null;
+        IntList newA = copyIntList(A);
+        IntList newB = copyIntList(B);
+
+        IntList endA = end(newA);
+        if (endA == null) {
+            return newB;
+        }
+
+        endA.rest = newB;
+        return newA;
     }
 
 
