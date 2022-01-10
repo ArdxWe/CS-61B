@@ -7,7 +7,7 @@ import byog.TileEngine.TETile;
  *  in either keyboard or input string mode.
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         if (args.length > 1) {
             System.out.println("Can only have one argument - the input string");
             System.exit(0);
@@ -17,7 +17,8 @@ public class Main {
             System.out.println(TETile.toString(worldState));
         } else {
             Game game = new Game();
-            game.playWithKeyboard();
+            game.play();
+            // game.playWithKeyboard();
         }
     }
 }
